@@ -102,7 +102,7 @@ namespace ToDoList.Tests
   {
     //Arrange
     string description = "Walk the dog.";
-    Item newItem = new Item(description);
+    Item newItem = new Item(description, 1);
     List<Item> newList = new List<Item> { newItem };
     string name = "Work";
     Category newCategory = new Category(name);
@@ -115,7 +115,7 @@ namespace ToDoList.Tests
     CollectionAssert.AreEqual(newList, result);
   }
 
-  
+
 
   }
 }
