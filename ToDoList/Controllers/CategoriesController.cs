@@ -44,15 +44,16 @@ namespace ToDoList.Controllers
     [HttpPost("/categories/{categoryId}/items")]
     public ActionResult Create(int categoryId, string itemDescription)
     {
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      Category foundCategory = Category.Find(categoryId);
-      Item newItem = new Item(itemDescription);
-      foundCategory.AddItem(newItem);
-      List<Item> categoryItems = foundCategory.GetItems();
-      model.Add("items", categoryItems);
-      model.Add("category", foundCategory);
-      return View("Show", model);
-    }
+    Dictionary<string, object> model = new Dictionary<string, object>();
+    Category foundCategory = Category.Find(categoryId);
+    Item newItem = new Item(itemDescription);
+    newItem.Save();    // <--- This line is new!
+    foundCategory.AddItem(newItem);
+    List<Item> categoryItems = foundCategory.GetItems();
+    model.Add("items", categoryItems);
+    model.Add("category", foundCategory);
+    return View("Show", model);
+  }
 
   }
 }
